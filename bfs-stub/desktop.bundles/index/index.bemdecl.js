@@ -17,13 +17,18 @@ exports.blocks = [
         "name": "sssr"
     },
     {
-        "name": "header"
+        "name": "header",
+        "elems": [
+            {
+                "name": "logo"
+            },
+            {
+                "name": "form"
+            }
+        ]
     },
     {
         "name": "logo"
-    },
-    {
-        "name": "header__logo"
     },
     {
         "name": "form",
@@ -32,9 +37,6 @@ exports.blocks = [
                 "name": "search"
             }
         ]
-    },
-    {
-        "name": "header__form"
     },
     {
         "name": "input",
@@ -97,7 +99,13 @@ exports.blocks = [
         "name": "user",
         "elems": [
             {
+                "name": "name"
+            },
+            {
                 "name": "post-time"
+            },
+            {
+                "name": "icon"
             }
         ]
     },
@@ -105,13 +113,7 @@ exports.blocks = [
         "name": "link"
     },
     {
-        "name": "user__name"
-    },
-    {
         "name": "image"
-    },
-    {
-        "name": "user__icon"
     },
     {
         "name": "service"

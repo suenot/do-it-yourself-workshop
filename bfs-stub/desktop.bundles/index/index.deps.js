@@ -86,10 +86,15 @@ exports.deps = [
         "block": "header"
     },
     {
-        "block": "logo"
+        "block": "header",
+        "elem": "logo"
     },
     {
-        "block": "header__logo"
+        "block": "header",
+        "elem": "form"
+    },
+    {
+        "block": "logo"
     },
     {
         "block": "form"
@@ -97,9 +102,6 @@ exports.deps = [
     {
         "block": "form",
         "elem": "search"
-    },
-    {
-        "block": "header__form"
     },
     {
         "block": "input"
@@ -281,7 +283,15 @@ exports.deps = [
     },
     {
         "block": "user",
+        "elem": "name"
+    },
+    {
+        "block": "user",
         "elem": "post-time"
+    },
+    {
+        "block": "user",
+        "elem": "icon"
     },
     {
         "block": "link"
@@ -291,13 +301,7 @@ exports.deps = [
         "mod": "disabled"
     },
     {
-        "block": "user__name"
-    },
-    {
         "block": "image"
-    },
-    {
-        "block": "user__icon"
     },
     {
         "block": "service"

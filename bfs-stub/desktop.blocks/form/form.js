@@ -8,7 +8,7 @@ modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
                     // подписаться на БЭМ-событие `submit`
 
                     // и вывести в консоль сообщение 'BEM-event'
-                    console.log('BEM-event');
+                    // console.log('BEM-event');
                 }
             }
         },
@@ -17,9 +17,7 @@ modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
             // отменить дефолтное поведение формы
             e.preventDefault();
             // сгенерировать БЭМ-событие `submit`
-            if(!this.hasMod('disabled')) {
-                this.emit('click'); // создание BEM-события "click"
-            }
+            this.emit('submit', this.getVal()); // создание BEM-события "click"
         },
         getVal: function() {
             return this.domElem.serialize();

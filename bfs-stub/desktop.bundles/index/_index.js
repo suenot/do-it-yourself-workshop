@@ -3822,17 +3822,8 @@ modules.define(
             }, this);
           }
         },
-        // loading: {
-        //   true: function () {
-        //     $('.spin').bem('spin').setMod('progress');
-        //   },
-        //   '': function () {
-        //     $('.spin').bem('spin').delMod('progress');
-        //   }
-        // }
       },
       _sendRequest: function (formVal) {
-        // this.setMod('loading');
         $.ajax({
           type: 'GET',
           dataType: 'html',
@@ -3843,9 +3834,8 @@ modules.define(
           context: this
         });
       },
-      _onSuccess: function (content) {
-        // this.delMod('loading');
-        BEMDOM.update(this.findBlockInside('content').domElem, content);
+      _onSuccess: function () {
+        console.log('ajax loaded');
       }
     }
   ));
@@ -3863,7 +3853,7 @@ modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
                     // подписаться на БЭМ-событие `submit`
 
                     // и вывести в консоль сообщение 'BEM-event'
-                    console.log('BEM-event');
+                    // console.log('BEM-event');
                 }
             }
         },
@@ -3872,9 +3862,7 @@ modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
             // отменить дефолтное поведение формы
             e.preventDefault();
             // сгенерировать БЭМ-событие `submit`
-            if(!this.hasMod('disabled')) {
-                this.emit('click'); // создание BEM-события "click"
-            }
+            this.emit('submit', this.getVal()); // создание BEM-события "click"
         },
         getVal: function() {
             return this.domElem.serialize();

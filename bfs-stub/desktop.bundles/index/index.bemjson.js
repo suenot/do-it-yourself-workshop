@@ -2,6 +2,7 @@
     block: 'page',
     title: 'Title of the page',
     mix: [{block: 'sssr', js: true}],
+    js: true,
     favicon: '/favicon.ico',
     head: [
         { elem: 'meta', attrs: { name: 'description', content: '' }},
@@ -14,31 +15,32 @@
             content: [
                 {
                     block: 'logo',
-                    mix: { block: 'header__logo' },
+                    mix: { block: 'header', elem: 'logo' },
                     content: 'Social Services Search Robot'
                 },
                 {
                     block: 'form',
                     tag: 'form',
                     js: true,
-                    mix: { block: 'header__form' },
+                    mix: { block: 'header', elem: 'form' },
                     content: [
                         {
                             elem: 'search',
-                            content: 'Search'
+                            content: [
+                                {
+                                    block: 'input',
+                                    mods: { theme: 'normal', size: 'm', 'has-clear' : true },
+                                    name: 'query',
+                                    placeholder: 'try me, baby!'
+                                },
+                                {
+                                    block : 'button',
+                                    mods: { theme: 'normal', size: 'm' },
+                                    type: 'submit',
+                                    text: 'Найти'
+                                }
+                            ]
                         },
-                        {
-                            block: 'input',
-                            mods: { theme: 'normal', size: 'm', 'has-clear' : true },
-                            name: 'query',
-                            placeholder: 'try me, baby!'
-                        },
-                        {
-                            block : 'button',
-                            mods: { theme: 'normal', size: 'm' },
-                            type: 'submit',
-                            text: 'Найти'
-                        }
                     ]
                 }
             ]
@@ -50,7 +52,7 @@
                     block: 'island',
                     tag: 'form',
                     js: true,
-                    mix: { block: 'header__form' },
+                    mix: { block: 'header', elem: 'form' },
                     content: [
                         {
                             elem: 'header',
@@ -62,7 +64,7 @@
                                             block: 'link',
                                             url: 'https://twitter.com/tadatuta',
                                             content: 'Владимир Гриненко',
-                                            mix: {block: 'user__name'}
+                                            mix: {block: 'user', elem: 'name'}
                                         },
                                         {
                                             elem: 'post-time',
@@ -72,7 +74,7 @@
                                             block: 'image',
                                             url: 'https://pbs.twimg.com/profile_images/1384848690/image_400x400.jpg',
                                             alt: 'Владимир Гриненко',
-                                            mix: {block: 'user__icon'}
+                                            mix: {block: 'user', elem: 'icon'}
                                         }
                                     ]
                                 }
