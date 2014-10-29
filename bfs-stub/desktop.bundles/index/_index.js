@@ -3809,66 +3809,77 @@ $(function() {
 ;
 /* ../../desktop.blocks/sssr/sssr.js begin */
 modules.define(
-  'sssr',
-  ['i-bem__dom', 'jquery'],
-  function(provide, BEMDOM, $) {
-    provide(BEMDOM.decl(this.name, {
-      onSetMod: {
-        js: {
-          inited: function() {
-            form = this.findBlockInside('form');
-            form.on('submit', function () {
-              this._sendRequest(form.getVal())
-            }, this);
-          }
-        },
-      },
-      _sendRequest: function (formVal) {
-        $.ajax({
-          type: 'GET',
-          dataType: 'html',
-          cache: false,
-          url: 'https://sssr.bem.yandex.net/search/',
-          data: formVal + '&twitter=on',
-          success: this._onSuccess,
-          context: this
-        });
-      },
-      _onSuccess: function () {
-        console.log('ajax loaded');
-      }
-    }
-  ));
+    'sssr',
+    ['i-bem__dom', 'jquery'],
+    function(provide, BEMDOM, $) {
+        provide(BEMDOM.decl(this.name, {
+            onSetMod: {
+                js: {
+                    inited: function() {
+                        form = this.findBlockInside('form');
+                        form.on('submit', function () {
+                            this._sendRequest(form.getVal());
+                        }, this);
+                    }
+                },
+                loading: {
+                    true: function () {
+                        $('.spin').bem('spin').setMod('progress');
+                    },
+                    '': function () {
+                        $('.spin').bem('spin').delMod('progress');
+                    }
+                }
+            },
+            _sendRequest: function (formVal) {
+                this.setMod('loading');
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'html',
+                    cache: false,
+                    url: 'https://sssr.bem.yandex.net/search/',
+                    data: formVal + '&twitter=on',
+                    success: this._onSuccess,
+                    context: this
+                });
+            },
+            _onSuccess: function (content) {
+                console.log('ajax loaded');
+                this.delMod('loading');
+                BEMDOM.update(this.findBlockInside('content').domElem, content);
+            }
+        }
+    ));
 });
+
 /* ../../desktop.blocks/sssr/sssr.js end */
 ;
 /* ../../desktop.blocks/form/form.js begin */
-modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
-
-    provide(BEMDOM.decl(this.name, {
-        onSetMod: {
-            js: {
-                inited: function() {
-                    this.bindTo('submit', this._onSubmit);
-                    // подписаться на БЭМ-событие `submit`
-
-                    // и вывести в консоль сообщение 'BEM-event'
-                    // console.log('BEM-event');
+modules.define(
+    'form',
+    ['i-bem__dom'],
+    function(provide, BEMDOM) {
+        provide(BEMDOM.decl(this.name, {
+            onSetMod: {
+                js: {
+                    inited: function() {
+                        this.bindTo('submit', this._onSubmit);
+                        // this.bindTo('submit', function() {
+                        // });
+                    }
                 }
+            },
+            _onSubmit: function (e) {
+                e.preventDefault();
+                // console.log('prevented')
+                this.emit('submit', this.getVal());
+            },
+            getVal: function() {
+                return this.domElem.serialize();
             }
-        },
-
-        _onSubmit: function(e) {
-            // отменить дефолтное поведение формы
-            e.preventDefault();
-            // сгенерировать БЭМ-событие `submit`
-            this.emit('submit', this.getVal()); // создание BEM-события "click"
-        },
-        getVal: function() {
-            return this.domElem.serialize();
         }
-    }))
-})
+    ));
+});
 /* ../../desktop.blocks/form/form.js end */
 ;
 /* ../../libs/bem-components/common.blocks/input/input.js begin */

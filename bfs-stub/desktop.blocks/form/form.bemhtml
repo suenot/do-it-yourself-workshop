@@ -1,4 +1,4 @@
 block('form')(
-  tag()('form'),
-  js()('true')
+    tag()('form'),
+    js()('true')
 )

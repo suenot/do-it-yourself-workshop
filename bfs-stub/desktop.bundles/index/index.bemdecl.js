@@ -79,6 +79,17 @@ exports.blocks = [
         ]
     },
     {
+        "name": "spin",
+        "mods": [
+            {
+                "name": "theme",
+                "vals": [
+                    "simple"
+                ]
+            }
+        ]
+    },
+    {
         "name": "content"
     },
     {
@@ -116,9 +127,14 @@ exports.blocks = [
         "name": "image"
     },
     {
-        "name": "service"
-    },
-    {
-        "name": "service_type_twitter"
+        "name": "service",
+        "mods": [
+            {
+                "name": "type_twitter",
+                "vals": [
+                    true
+                ]
+            }
+        ]
     }
 ];

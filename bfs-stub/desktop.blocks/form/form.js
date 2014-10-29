@@ -1,26 +1,25 @@
-modules.define('form', ['i-bem__dom'], function(provide, BEMDOM) {
-
-    provide(BEMDOM.decl(this.name, {
-        onSetMod: {
-            js: {
-                inited: function() {
-                    this.bindTo('submit', this._onSubmit);
-                    // подписаться на БЭМ-событие `submit`
-
-                    // и вывести в консоль сообщение 'BEM-event'
-                    // console.log('BEM-event');
+modules.define(
+    'form',
+    ['i-bem__dom'],
+    function(provide, BEMDOM) {
+        provide(BEMDOM.decl(this.name, {
+            onSetMod: {
+                js: {
+                    inited: function() {
+                        this.bindTo('submit', this._onSubmit);
+                        // this.bindTo('submit', function() {
+                        // });
+                    }
                 }
+            },
+            _onSubmit: function (e) {
+                e.preventDefault();
+                // console.log('prevented')
+                this.emit('submit', this.getVal());
+            },
+            getVal: function() {
+                return this.domElem.serialize();
             }
-        },
-
-        _onSubmit: function(e) {
-            // отменить дефолтное поведение формы
-            e.preventDefault();
-            // сгенерировать БЭМ-событие `submit`
-            this.emit('submit', this.getVal()); // создание BEM-события "click"
-        },
-        getVal: function() {
-            return this.domElem.serialize();
         }
-    }))
-})
+    ));
+});

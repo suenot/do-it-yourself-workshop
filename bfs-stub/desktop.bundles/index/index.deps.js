@@ -261,6 +261,18 @@ exports.deps = [
         "val": "m"
     },
     {
+        "block": "spin"
+    },
+    {
+        "block": "spin",
+        "mod": "theme"
+    },
+    {
+        "block": "spin",
+        "mod": "theme",
+        "val": "simple"
+    },
+    {
         "block": "content"
     },
     {
@@ -307,7 +319,8 @@ exports.deps = [
         "block": "service"
     },
     {
-        "block": "service_type_twitter"
+        "block": "service",
+        "mod": "type_twitter"
     }
 ];
 exports.depsByTechs = {

@@ -374,6 +374,40 @@
    }
 
 /* ../../libs/bem-components/design/common.blocks/button/_theme/button_theme_normal.roo end */
+/* ../../desktop.blocks/spin/spin.css begin */
+.spin {
+ margin-left: 1em;
+ vertical-align: middle;
+}
+
+.sssr_loading .content {
+ opacity: 0.5;
+}
+
+/* ../../desktop.blocks/spin/spin.css end */
+/* ../../libs/bem-components/design/common.blocks/spin/_theme/spin_theme_simple.roo begin */
+.spin_theme_simple {
+ display: none;
+ width: 20px;
+ height: 20px;
+ border: 2px dashed #000;
+ border-radius: 50%;
+}
+ .spin_theme_simple.spin_progress {
+  display: inline-block;
+  animation: spin_theme_simple 2s infinite linear;
+ }
+
+@keyframes spin_theme_simple {
+ from {
+  transform: rotate(0);
+ }
+ to {
+  transform: rotate(360deg);
+ }
+}
+
+/* ../../libs/bem-components/design/common.blocks/spin/_theme/spin_theme_simple.roo end */
 /* ../../desktop.blocks/content/content.css begin */
 .content {
  padding: 10px 10%;
